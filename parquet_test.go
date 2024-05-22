@@ -157,7 +157,7 @@ func TestLocalParquetReadWrite(t *testing.T) {
 				ReadVersion:      util.PtrOf[int64](1),
 				IsolationLevel:   util.PtrOf("u1"),
 				IsBlindAppend:    util.PtrOf(true),
-				OperationMetrics: map[string]any{"a": "b"},
+				OperationMetrics: map[string]string{"a": "b"},
 				UserMetadata:     util.PtrOf("u1"),
 				EngineInfo:       util.PtrOf("u1"),
 			},

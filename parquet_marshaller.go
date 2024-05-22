@@ -106,7 +106,7 @@ func parquetMarshalAdd(add *action.AddFile, obj interfaces.MarshalObject) error 
 	obj.AddField("path").SetByteArray([]byte(add.Path))
 	obj.AddField("dataChange").SetBool(add.DataChange)
 
-	parquet.MarshalMap(obj, "partitionValues", add.PartitionValues)
+	parquet.MarshalMapString(obj, "partitionValues", add.PartitionValues)
 
 	obj.AddField("size").SetInt64(add.Size)
 	obj.AddField("modificationTime").SetInt64(add.ModificationTime)
@@ -115,7 +115,7 @@ func parquetMarshalAdd(add *action.AddFile, obj interfaces.MarshalObject) error 
 		obj.AddField("stats").SetByteArray([]byte(add.Stats))
 	}
 	if len(add.Tags) > 0 {
-		parquet.MarshalMap(obj, "tags", add.Tags)
+		parquet.MarshalMapString(obj, "tags", add.Tags)
 	}
 	return nil
 }
@@ -138,13 +138,13 @@ func parquetUnmarshalAdd(add *action.AddFile, obj interfaces.UnmarshalObject) er
 	if err := parquet.UnmarshalInt64(g, "modificationTime", func(s int64) { add.ModificationTime = s }); err != nil {
 		return err
 	}
-	if err := parquet.UnmarshalMap(g, "partitionValues", func(m map[string]string) { add.PartitionValues = m }); err != nil {
+	if err := parquet.UnmarshalMapString(g, "partitionValues", func(m map[string]string) { add.PartitionValues = m }); err != nil {
 		return err
 	}
 	if err := parquet.UnmarshalString(g, "stats", func(s string) { add.Stats = s }); err != nil {
 		return err
 	}
-	if err := parquet.UnmarshalMap(g, "tags", func(m map[string]string) { add.Tags = m }); err != nil {
+	if err := parquet.UnmarshalMapString(g, "tags", func(m map[string]string) { add.Tags = m }); err != nil {
 		return err
 	}
 
@@ -158,11 +158,11 @@ func parquetMarshalRemove(rm *action.RemoveFile, obj interfaces.MarshalObject) e
 		obj.AddField("deletionTimestamp").SetInt64(*rm.DeletionTimestamp)
 	}
 	obj.AddField("extendedFileMetadata").SetBool(rm.ExtendedFileMetadata)
-	parquet.MarshalMap(obj, "partitionValues", rm.PartitionValues)
+	parquet.MarshalMapString(obj, "partitionValues", rm.PartitionValues)
 	if rm.Size != nil {
 		obj.AddField("size").SetInt64(*rm.Size)
 	}
-	parquet.MarshalMap(obj, "tags", rm.Tags)
+	parquet.MarshalMapString(obj, "tags", rm.Tags)
 	return nil
 }
 
@@ -184,13 +184,13 @@ func parquetUnmarshalRemove(rm *action.RemoveFile, obj interfaces.UnmarshalObjec
 	if err := parquet.UnmarshalBool(g, "extendedFileMetadata", func(s bool) { rm.ExtendedFileMetadata = s }); err != nil {
 		return err
 	}
-	if err := parquet.UnmarshalMap(g, "partitionValues", func(m map[string]string) { rm.PartitionValues = m }); err != nil {
+	if err := parquet.UnmarshalMapString(g, "partitionValues", func(m map[string]string) { rm.PartitionValues = m }); err != nil {
 		return err
 	}
 	if err := parquet.UnmarshalInt64(g, "size", func(s int64) { rm.Size = &s }); err != nil {
 		return err
 	}
-	if err := parquet.UnmarshalMap(g, "tags", func(m map[string]string) { rm.Tags = m }); err != nil {
+	if err := parquet.UnmarshalMapString(g, "tags", func(m map[string]string) { rm.Tags = m }); err != nil {
 		return err
 	}
 	return nil
@@ -203,11 +203,11 @@ func parquetMarshalMetadata(meta *action.Metadata, obj interfaces.MarshalObject)
 
 	format := obj.AddField("format").Group()
 	format.AddField("provider").SetByteArray([]byte(meta.Format.Proviver))
-	parquet.MarshalMap(format, "options", meta.Format.Options)
+	parquet.MarshalMapString(format, "options", meta.Format.Options)
 
 	obj.AddField("schemaString").SetByteArray([]byte(meta.SchemaString))
 	parquet.MarshalList(obj, "partitionColumns", meta.PartitionColumns)
-	parquet.MarshalMap(obj, "configuration", meta.Configuration)
+	parquet.MarshalMapString(obj, "configuration", meta.Configuration)
 	if meta.CreatedTime != nil {
 		obj.AddField("createdTime").SetInt64(*meta.CreatedTime)
 	}
@@ -232,7 +232,7 @@ func parquetUnmarshalMetadata(meta *action.Metadata, obj interfaces.UnmarshalObj
 	if err := parquet.UnmarshalString(g, "schemaString", func(s string) { meta.SchemaString = s }); err != nil {
 		return err
 	}
-	if err := parquet.UnmarshalMap(g, "configuration", func(m map[string]string) { meta.Configuration = m }); err != nil {
+	if err := parquet.UnmarshalMapString(g, "configuration", func(m map[string]string) { meta.Configuration = m }); err != nil {
 		return err
 	}
 	if err := parquet.UnmarshalInt64(g, "createdTime", func(s int64) { meta.CreatedTime = &s }); err != nil {
@@ -246,7 +246,7 @@ func parquetUnmarshalMetadata(meta *action.Metadata, obj interfaces.UnmarshalObj
 	if err := parquet.UnmarshalString(format, "provider", func(s string) { meta.Format.Proviver = s }); err != nil {
 		return err
 	}
-	if err := parquet.UnmarshalMap(format, "options", func(m map[string]string) { meta.Format.Options = m }); err != nil {
+	if err := parquet.UnmarshalMapString(format, "options", func(m map[string]string) { meta.Format.Options = m }); err != nil {
 		return err
 	}
 
@@ -279,11 +279,11 @@ func parquetUnmarshaProtocol(p *action.Protocol, obj interfaces.UnmarshalObject)
 
 func parquetMarshalCDC(add *action.AddCDCFile, obj interfaces.MarshalObject) error {
 	obj.AddField("path").SetByteArray([]byte(add.Path))
-	parquet.MarshalMap(obj, "partitionValues", add.PartitionValues)
+	parquet.MarshalMapString(obj, "partitionValues", add.PartitionValues)
 	obj.AddField("size").SetInt64(add.Size)
 
 	if len(add.Tags) > 0 {
-		parquet.MarshalMap(obj, "tags", add.Tags)
+		parquet.MarshalMapString(obj, "tags", add.Tags)
 	}
 	return nil
 }
@@ -300,10 +300,10 @@ func parquetUnmarshalCDC(add *action.AddCDCFile, obj interfaces.UnmarshalObject)
 	if err := parquet.UnmarshalInt64(g, "size", func(s int64) { add.Size = s }); err != nil {
 		return err
 	}
-	if err := parquet.UnmarshalMap(g, "partitionValues", func(m map[string]string) { add.PartitionValues = m }); err != nil {
+	if err := parquet.UnmarshalMapString(g, "partitionValues", func(m map[string]string) { add.PartitionValues = m }); err != nil {
 		return err
 	}
-	if err := parquet.UnmarshalMap(g, "tags", func(m map[string]string) { add.Tags = m }); err != nil {
+	if err := parquet.UnmarshalMapString(g, "tags", func(m map[string]string) { add.Tags = m }); err != nil {
 		return err
 	}
 
@@ -322,7 +322,7 @@ func parquetMarshalCommitInfo(add *action.CommitInfo, obj interfaces.MarshalObje
 		obj.AddField("userName").SetByteArray([]byte(*add.UserName))
 	}
 	obj.AddField("operation").SetByteArray([]byte(add.Operation))
-	parquet.MarshalMap(obj, "operationParameters", add.OperationParameters)
+	parquet.MarshalMapAny(obj, "operationParameters", add.OperationParameters)
 	if add.ClusterId != nil {
 		obj.AddField("clusterId").SetByteArray([]byte(*add.ClusterId))
 	}
@@ -335,7 +335,7 @@ func parquetMarshalCommitInfo(add *action.CommitInfo, obj interfaces.MarshalObje
 	if add.IsBlindAppend != nil {
 		obj.AddField("isBlindAppend").SetBool(*add.IsBlindAppend)
 	}
-	parquet.MarshalMap(obj, "operationMetrics", add.OperationMetrics)
+	parquet.MarshalMapString(obj, "operationMetrics", add.OperationMetrics)
 	if add.UserMetadata != nil {
 		obj.AddField("userMetadata").SetByteArray([]byte(*add.UserMetadata))
 	}
@@ -380,7 +380,7 @@ func parquetUnmarshalCommitInfo(add *action.CommitInfo, obj interfaces.Unmarshal
 	if err := parquet.UnmarshalString(g, "operation", func(s string) { add.Operation = s }); err != nil {
 		return err
 	}
-	if err := parquet.UnmarshalMap(g, "operationParameters", func(m map[string]any) { add.OperationParameters = m }); err != nil {
+	if err := parquet.UnmarshalMapAny(g, "operationParameters", func(m map[string]any) { add.OperationParameters = m }); err != nil {
 		return err
 	}
 	if err := parquet.UnmarshalString(g, "clusterId", func(s string) { add.ClusterId = &s }); err != nil {
@@ -395,7 +395,7 @@ func parquetUnmarshalCommitInfo(add *action.CommitInfo, obj interfaces.Unmarshal
 	if err := parquet.UnmarshalString(g, "isolationLevel", func(s string) { add.IsolationLevel = &s }); err != nil {
 		return err
 	}
-	if err := parquet.UnmarshalMap(g, "operationMetrics", func(m map[string]string) { add.OperationMetrics = m }); err != nil {
+	if err := parquet.UnmarshalMapString(g, "operationMetrics", func(m map[string]string) { add.OperationMetrics = m }); err != nil {
 		return err
 	}
 	if err := parquet.UnmarshalString(g, "userMetadata", func(s string) { add.UserMetadata = &s }); err != nil {

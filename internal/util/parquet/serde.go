@@ -83,7 +83,47 @@ func UnmarshalList(obj interfaces.UnmarshalObject, fieldName string, setter func
 	return nil
 }
 
-func UnmarshalMap(obj interfaces.UnmarshalObject, fieldName string, setter func(map[string]any)) error {
+func UnmarshalMapString(obj interfaces.UnmarshalObject, fieldName string, setter func(map[string]string)) error {
+	v, ok := obj.GetData()[fieldName]
+	if !ok {
+		return nil
+	}
+	// avoid empty map
+	vm := v.(map[string]interface{})
+	if len(vm) == 0 {
+		return nil
+	}
+
+	m, err := obj.GetField(fieldName).Map()
+	if err != nil {
+		return err
+	}
+
+	res := make(map[string]string)
+	for m.Next() {
+		k, err := m.Key()
+		if err != nil {
+			return err
+		}
+		key, err := k.ByteArray()
+		if err != nil {
+			return err
+		}
+		v, err := m.Value()
+		if err != nil {
+			return err
+		}
+		val, err := v.ByteArray()
+		if err != nil {
+			return err
+		}
+		res[string(key)] = string(val)
+	}
+	setter(res)
+	return nil
+}
+
+func UnmarshalMapAny(obj interfaces.UnmarshalObject, fieldName string, setter func(map[string]any)) error {
 	v, ok := obj.GetData()[fieldName]
 	if !ok {
 		return nil
@@ -123,7 +163,20 @@ func UnmarshalMap(obj interfaces.UnmarshalObject, fieldName string, setter func(
 	return nil
 }
 
-func MarshalMap(obj interfaces.MarshalObject, fieldName string, m map[string]any) error {
+func MarshalMapString(obj interfaces.MarshalObject, fieldName string, m map[string]string) error {
+	if m == nil {
+		return nil
+	}
+	mo := obj.AddField(fieldName).Map()
+	for k, v := range m {
+		elem := mo.Add()
+		elem.Key().SetByteArray([]byte(k))
+		elem.Value().SetByteArray([]byte(v))
+	}
+	return nil
+}
+
+func MarshalMapAny(obj interfaces.MarshalObject, fieldName string, m map[string]any) error {
 	if m == nil {
 		return nil
 	}
@@ -148,7 +201,6 @@ func MarshalMap(obj interfaces.MarshalObject, fieldName string, m map[string]any
 		default:
 			panic(fmt.Sprintf("unsupported type %v with value %v", valueType.Kind(), v))
 		}
-
 	}
 	return nil
 }

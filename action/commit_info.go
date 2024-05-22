@@ -11,21 +11,21 @@ type CommitMarker interface {
 }
 
 type CommitInfo struct {
-	Version             *int64         `json:"version,omitempty"`
-	Timestamp           int64          `json:"timestamp,omitempty"`
-	UserID              *string        `json:"userId,omitempty"`
-	UserName            *string        `json:"userName,omitempty"`
-	Operation           string         `json:"operation,omitempty"`
-	OperationParameters map[string]any `json:"operationParameters,omitempty"`
-	Job                 *JobInfo       `json:"job,omitempty"`
-	Notebook            *NotebookInfo  `json:"notebook,omitempty"`
-	ClusterId           *string        `json:"clusterId,omitempty"`
-	ReadVersion         *int64         `json:"readVersion,omitempty"`
-	IsolationLevel      *string        `json:"isolationLevel,omitempty"`
-	IsBlindAppend       *bool          `json:"isBlindAppend,omitempty"`
-	OperationMetrics    map[string]any `json:"operationMetrics,omitempty"`
-	UserMetadata        *string        `json:"userMetadata,omitempty"`
-	EngineInfo          *string        `json:"engineInfo,omitempty"`
+	Version             *int64            `json:"version,omitempty"`
+	Timestamp           int64             `json:"timestamp,omitempty"`
+	UserID              *string           `json:"userId,omitempty"`
+	UserName            *string           `json:"userName,omitempty"`
+	Operation           string            `json:"operation,omitempty"`
+	OperationParameters map[string]any    `json:"operationParameters,omitempty"`
+	Job                 *JobInfo          `json:"job,omitempty"`
+	Notebook            *NotebookInfo     `json:"notebook,omitempty"`
+	ClusterId           *string           `json:"clusterId,omitempty"`
+	ReadVersion         *int64            `json:"readVersion,omitempty"`
+	IsolationLevel      *string           `json:"isolationLevel,omitempty"`
+	IsBlindAppend       *bool             `json:"isBlindAppend,omitempty"`
+	OperationMetrics    map[string]string `json:"operationMetrics,omitempty"`
+	UserMetadata        *string           `json:"userMetadata,omitempty"`
+	EngineInfo          *string           `json:"engineInfo,omitempty"`
 }
 
 func (c *CommitInfo) Wrap() *SingleAction {
