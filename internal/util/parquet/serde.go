@@ -153,11 +153,47 @@ func UnmarshalMapAny(obj interfaces.UnmarshalObject, fieldName string, setter fu
 		if err != nil {
 			return err
 		}
-		val, err := v.ByteArray()
-		if err != nil {
-			return err
+		valueType := reflect.TypeOf(v)
+		switch valueType.Kind() {
+		case reflect.String:
+			val, err := v.ByteArray()
+			if err != nil {
+				return err
+			}
+			res[string(key)] = string(val)
+		case reflect.Bool:
+			val, err := v.Bool()
+			if err != nil {
+				return err
+			}
+			res[string(key)] = val
+		case reflect.Int32:
+			val, err := v.Int32()
+			if err != nil {
+				return err
+			}
+			res[string(key)] = val
+		case reflect.Int64:
+			val, err := v.Int64()
+			if err != nil {
+				return err
+			}
+			res[string(key)] = val
+		case reflect.Float32:
+			val, err := v.Float32()
+			if err != nil {
+				return err
+			}
+			res[string(key)] = val
+		case reflect.Float64:
+			val, err := v.Float64()
+			if err != nil {
+				return err
+			}
+			res[string(key)] = val
+		default:
+			panic(fmt.Sprintf("unsupported type %v with value %v", valueType.Kind(), v))
 		}
-		res[string(key)] = string(val)
 	}
 	setter(res)
 	return nil
