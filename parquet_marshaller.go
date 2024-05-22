@@ -380,7 +380,7 @@ func parquetUnmarshalCommitInfo(add *action.CommitInfo, obj interfaces.Unmarshal
 	if err := parquet.UnmarshalString(g, "operation", func(s string) { add.Operation = s }); err != nil {
 		return err
 	}
-	if err := parquet.UnmarshalMap(g, "operationParameters", func(m map[string]string) { add.OperationParameters = m }); err != nil {
+	if err := parquet.UnmarshalMap(g, "operationParameters", func(m map[string]any) { add.OperationParameters = m }); err != nil {
 		return err
 	}
 	if err := parquet.UnmarshalString(g, "clusterId", func(s string) { add.ClusterId = &s }); err != nil {

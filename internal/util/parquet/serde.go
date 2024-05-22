@@ -1,6 +1,10 @@
 package parquet
 
-import "github.com/fraugster/parquet-go/floor/interfaces"
+import (
+	"fmt"
+	"github.com/fraugster/parquet-go/floor/interfaces"
+	"reflect"
+)
 
 func UnmarshalString(obj interfaces.UnmarshalObject, fieldName string, setter func(s string)) error {
 	if _, ok := obj.GetData()[fieldName]; ok {
@@ -79,7 +83,7 @@ func UnmarshalList(obj interfaces.UnmarshalObject, fieldName string, setter func
 	return nil
 }
 
-func UnmarshalMap(obj interfaces.UnmarshalObject, fieldName string, setter func(map[string]string)) error {
+func UnmarshalMap(obj interfaces.UnmarshalObject, fieldName string, setter func(map[string]any)) error {
 	v, ok := obj.GetData()[fieldName]
 	if !ok {
 		return nil
@@ -95,7 +99,7 @@ func UnmarshalMap(obj interfaces.UnmarshalObject, fieldName string, setter func(
 		return err
 	}
 
-	res := make(map[string]string)
+	res := make(map[string]any)
 	for m.Next() {
 		k, err := m.Key()
 		if err != nil {
@@ -119,7 +123,7 @@ func UnmarshalMap(obj interfaces.UnmarshalObject, fieldName string, setter func(
 	return nil
 }
 
-func MarshalMap(obj interfaces.MarshalObject, fieldName string, m map[string]string) error {
+func MarshalMap(obj interfaces.MarshalObject, fieldName string, m map[string]any) error {
 	if m == nil {
 		return nil
 	}
@@ -127,7 +131,24 @@ func MarshalMap(obj interfaces.MarshalObject, fieldName string, m map[string]str
 	for k, v := range m {
 		elem := mo.Add()
 		elem.Key().SetByteArray([]byte(k))
-		elem.Value().SetByteArray([]byte(v))
+		valueType := reflect.TypeOf(v)
+		switch valueType.Kind() {
+		case reflect.String:
+			elem.Value().SetByteArray([]byte(v.(string)))
+		case reflect.Bool:
+			elem.Value().SetBool(v.(bool))
+		case reflect.Int32:
+			elem.Value().SetInt32(v.(int32))
+		case reflect.Int64:
+			elem.Value().SetInt64(v.(int64))
+		case reflect.Float32:
+			elem.Value().SetFloat32(v.(float32))
+		case reflect.Float64:
+			elem.Value().SetFloat64(v.(float64))
+		default:
+			panic(fmt.Sprintf("unsupported type %v with value %v", valueType.Kind(), v))
+		}
+
 	}
 	return nil
 }
