@@ -3,9 +3,9 @@ package deltago
 import (
 	"context"
 
-	"github.com/csimplestring/delta-go/action"
-	"github.com/csimplestring/delta-go/internal/util/path"
-	"github.com/csimplestring/delta-go/iter"
+	"github.com/maxrem/delta-go/action"
+	"github.com/maxrem/delta-go/internal/util/path"
+	"github.com/maxrem/delta-go/iter"
 	goparquet "github.com/fraugster/parquet-go"
 	"github.com/fraugster/parquet-go/floor/interfaces"
 	"github.com/rotisserie/eris"

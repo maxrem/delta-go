@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/csimplestring/delta-go/errno"
+	"github.com/maxrem/delta-go/errno"
 	"github.com/samber/mo"
 )
 

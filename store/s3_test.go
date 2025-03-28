@@ -4,7 +4,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/csimplestring/delta-go/iter"
+	"github.com/maxrem/delta-go/iter"
 	"github.com/stretchr/testify/assert"
 	_ "gocloud.dev/blob/s3blob"
 )

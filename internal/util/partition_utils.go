@@ -3,14 +3,14 @@ package util
 import (
 	"strings"
 
-	"github.com/csimplestring/delta-go/types"
+	"github.com/maxrem/delta-go/types"
 	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/repeale/fp-go"
 	"github.com/samber/mo"
 )
 
 func SplitMetadataAndDataPredicates(condition types.Expression,
-	partitionColumns []string) (mo.Option[types.Expression], mo.Option[types.Expression]) {
+		partitionColumns []string) (mo.Option[types.Expression], mo.Option[types.Expression]) {
 
 	var metadataPredicates []types.Expression
 	var dataPredicates []types.Expression

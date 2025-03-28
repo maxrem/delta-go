@@ -6,9 +6,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/csimplestring/delta-go/action"
-	"github.com/csimplestring/delta-go/internal/util"
-	"github.com/csimplestring/delta-go/iter"
+	"github.com/maxrem/delta-go/action"
+	"github.com/maxrem/delta-go/internal/util"
+	"github.com/maxrem/delta-go/iter"
 	"github.com/repeale/fp-go"
 	"github.com/stretchr/testify/assert"
 )

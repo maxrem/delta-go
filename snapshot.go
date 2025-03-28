@@ -7,12 +7,12 @@ import (
 	"strings"
 
 	"github.com/barweiss/go-tuple"
-	"github.com/csimplestring/delta-go/action"
-	"github.com/csimplestring/delta-go/errno"
-	"github.com/csimplestring/delta-go/internal/util"
-	"github.com/csimplestring/delta-go/iter"
-	"github.com/csimplestring/delta-go/store"
-	expr "github.com/csimplestring/delta-go/types"
+	"github.com/maxrem/delta-go/action"
+	"github.com/maxrem/delta-go/errno"
+	"github.com/maxrem/delta-go/internal/util"
+	"github.com/maxrem/delta-go/iter"
+	"github.com/maxrem/delta-go/store"
+	expr "github.com/maxrem/delta-go/types"
 	"github.com/rotisserie/eris"
 )
 
@@ -64,7 +64,7 @@ type snapshotImp struct {
 }
 
 func newSnapshotImp(config Config, path string, version int64, logsegment *LogSegment,
-	minFileRetentionTimestamp int64, timestamp int64, store store.Store, checkpointReader checkpointReader) (*snapshotImp, error) {
+		minFileRetentionTimestamp int64, timestamp int64, store store.Store, checkpointReader checkpointReader) (*snapshotImp, error) {
 	s := &snapshotImp{
 		config:                    config,
 		path:                      path,

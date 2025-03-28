@@ -3,7 +3,7 @@ package types
 import (
 	"fmt"
 
-	"github.com/csimplestring/delta-go/errno"
+	"github.com/maxrem/delta-go/errno"
 	"github.com/rotisserie/eris"
 )
 

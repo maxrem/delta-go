@@ -3,9 +3,9 @@ package deltago
 import (
 	"log"
 
-	"github.com/csimplestring/delta-go/action"
-	"github.com/csimplestring/delta-go/errno"
-	"github.com/csimplestring/delta-go/internal/util/filenames"
+	"github.com/maxrem/delta-go/action"
+	"github.com/maxrem/delta-go/errno"
+	"github.com/maxrem/delta-go/internal/util/filenames"
 	"github.com/rotisserie/eris"
 )
 

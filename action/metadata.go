@@ -3,8 +3,8 @@ package action
 import (
 	"time"
 
-	"github.com/csimplestring/delta-go/internal/util"
-	"github.com/csimplestring/delta-go/types"
+	"github.com/maxrem/delta-go/internal/util"
+	"github.com/maxrem/delta-go/types"
 	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/google/uuid"
 	"github.com/repeale/fp-go"

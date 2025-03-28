@@ -8,11 +8,11 @@ import (
 	"sync/atomic"
 
 	"github.com/ahmetb/go-linq/v3"
-	"github.com/csimplestring/delta-go/action"
-	"github.com/csimplestring/delta-go/errno"
-	"github.com/csimplestring/delta-go/internal/util"
-	"github.com/csimplestring/delta-go/internal/util/filenames"
-	"github.com/csimplestring/delta-go/store"
+	"github.com/maxrem/delta-go/action"
+	"github.com/maxrem/delta-go/errno"
+	"github.com/maxrem/delta-go/internal/util"
+	"github.com/maxrem/delta-go/internal/util/filenames"
+	"github.com/maxrem/delta-go/store"
 	"github.com/rotisserie/eris"
 	"github.com/samber/mo"
 

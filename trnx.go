@@ -7,16 +7,16 @@ import (
 	"log"
 	"sync"
 
-	"github.com/csimplestring/delta-go/action"
-	"github.com/csimplestring/delta-go/errno"
-	"github.com/csimplestring/delta-go/internal/util"
-	"github.com/csimplestring/delta-go/internal/util/filenames"
-	"github.com/csimplestring/delta-go/internal/util/path"
-	"github.com/csimplestring/delta-go/isolation"
-	"github.com/csimplestring/delta-go/iter"
-	"github.com/csimplestring/delta-go/op"
-	"github.com/csimplestring/delta-go/store"
-	"github.com/csimplestring/delta-go/types"
+	"github.com/maxrem/delta-go/action"
+	"github.com/maxrem/delta-go/errno"
+	"github.com/maxrem/delta-go/internal/util"
+	"github.com/maxrem/delta-go/internal/util/filenames"
+	"github.com/maxrem/delta-go/internal/util/path"
+	"github.com/maxrem/delta-go/isolation"
+	"github.com/maxrem/delta-go/iter"
+	"github.com/maxrem/delta-go/op"
+	"github.com/maxrem/delta-go/store"
+	"github.com/maxrem/delta-go/types"
 	"github.com/rotisserie/eris"
 
 	mapset "github.com/deckarep/golang-set/v2"
@@ -93,12 +93,12 @@ type optimisticTransactionImp struct {
 }
 
 func newOptimisticTransaction(snapshot *snapshotImp,
-	snapshotManager *SnapshotReader,
-	clock Clock,
-	configuration tableConfigurations,
-	lock *sync.Mutex,
-	logStore store.Store,
-	logPath string) *optimisticTransactionImp {
+		snapshotManager *SnapshotReader,
+		clock Clock,
+		configuration tableConfigurations,
+		lock *sync.Mutex,
+		logStore store.Store,
+		logPath string) *optimisticTransactionImp {
 
 	return &optimisticTransactionImp{
 		snapshot:               snapshot,
@@ -388,9 +388,9 @@ func (trx *optimisticTransactionImp) checkPartitionColumns(partitionCols []strin
 }
 
 func (trx *optimisticTransactionImp) verifySchemaCompatibility(
-	existingSchema *types.StructType,
-	newSchema *types.StructType,
-	actions []action.Action) error {
+		existingSchema *types.StructType,
+		newSchema *types.StructType,
+		actions []action.Action) error {
 
 	numFiles, err := trx.snapshot.numOfFiles()
 	if err != nil {

@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/barweiss/go-tuple"
-	"github.com/csimplestring/delta-go/action"
+	"github.com/maxrem/delta-go/action"
 	duration "github.com/xhit/go-str2duration/v2"
 )
 

@@ -4,8 +4,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/csimplestring/delta-go/errno"
-	"github.com/csimplestring/delta-go/types"
+	"github.com/maxrem/delta-go/errno"
+	"github.com/maxrem/delta-go/types"
 	"github.com/rotisserie/eris"
 	"github.com/shopspring/decimal"
 )

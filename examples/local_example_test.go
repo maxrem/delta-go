@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	delta "github.com/csimplestring/delta-go"
+	delta "github.com/maxrem/delta-go"
 )
 
 func TestLocalExample(t *testing.T) {

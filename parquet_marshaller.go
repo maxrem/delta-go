@@ -1,8 +1,8 @@
 package deltago
 
 import (
-	"github.com/csimplestring/delta-go/action"
-	"github.com/csimplestring/delta-go/internal/util/parquet"
+	"github.com/maxrem/delta-go/action"
+	"github.com/maxrem/delta-go/internal/util/parquet"
 	"github.com/fraugster/parquet-go/floor/interfaces"
 )
 

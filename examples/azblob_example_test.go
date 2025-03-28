@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	delta "github.com/csimplestring/delta-go"
+	delta "github.com/maxrem/delta-go"
 )
 
 func TestAzureBlobExample(t *testing.T) {

@@ -3,12 +3,12 @@ package deltago
 import (
 	"testing"
 
-	"github.com/csimplestring/delta-go/action"
-	"github.com/csimplestring/delta-go/errno"
-	"github.com/csimplestring/delta-go/internal/util"
-	"github.com/csimplestring/delta-go/iter"
-	"github.com/csimplestring/delta-go/op"
-	"github.com/csimplestring/delta-go/types"
+	"github.com/maxrem/delta-go/action"
+	"github.com/maxrem/delta-go/errno"
+	"github.com/maxrem/delta-go/internal/util"
+	"github.com/maxrem/delta-go/iter"
+	"github.com/maxrem/delta-go/op"
+	"github.com/maxrem/delta-go/types"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -89,15 +89,15 @@ func setUpTestTrxLog(setup []action.Action, log Log, f *trxTestFixture, t *testi
 }
 
 func checkTrx(
-	conflict bool,
-	log Log,
-	reads []func(OptimisticTransaction),
-	concurrentWrites []func(OptimisticTransaction, []action.Action),
-	concurrentWritesActions []action.Action,
-	actions []action.Action,
-	op *op.Operation,
-	engineInfo string,
-	t *testing.T) {
+		conflict bool,
+		log Log,
+		reads []func(OptimisticTransaction),
+		concurrentWrites []func(OptimisticTransaction, []action.Action),
+		concurrentWritesActions []action.Action,
+		actions []action.Action,
+		op *op.Operation,
+		engineInfo string,
+		t *testing.T) {
 
 	trx, err := log.StartTransaction()
 	assert.NoError(t, err)

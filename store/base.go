@@ -3,7 +3,7 @@ package store
 import (
 	"context"
 
-	"github.com/csimplestring/delta-go/iter"
+	"github.com/maxrem/delta-go/iter"
 	"gocloud.dev/blob"
 )
 

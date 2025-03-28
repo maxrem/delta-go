@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/csimplestring/delta-go/errno"
+	"github.com/maxrem/delta-go/errno"
 	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/repeale/fp-go"
 	"github.com/samber/mo"
@@ -88,8 +88,8 @@ func isDatatypeWriteCompatible(_existingType DataType, _newType DataType) bool {
 		e := _existingType.(*MapType)
 		n := _newType.(*MapType)
 		return (!e.ValueContainsNull || n.ValueContainsNull) &&
-			isDatatypeWriteCompatible(e.KeyType, n.KeyType) &&
-			isDatatypeWriteCompatible(e.ValueType, n.ValueType)
+				isDatatypeWriteCompatible(e.KeyType, n.KeyType) &&
+				isDatatypeWriteCompatible(e.ValueType, n.ValueType)
 	}
 	return _existingType.Name() == _newType.Name()
 }
@@ -115,8 +115,8 @@ func isStructWriteCompatible(_existingSchema *StructType, _newSchema *StructType
 		if v := existing.get(newField.Name); v.IsPresent() {
 			existingField := v.MustGet()
 			isCompatible = isCompatible && (existingField.Name == newField.Name) &&
-				(!existingField.Nullable || newField.Nullable) &&
-				(isDatatypeWriteCompatible(existingField.DataType, newField.DataType))
+					(!existingField.Nullable || newField.Nullable) &&
+					(isDatatypeWriteCompatible(existingField.DataType, newField.DataType))
 		}
 	}
 	return isCompatible

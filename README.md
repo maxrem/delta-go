@@ -1,7 +1,7 @@
 # Delta Go
 
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/csimplestring/delta-go/go.yml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/csimplestring/delta-go)](https://goreportcard.com/report/github.com/csimplestring/delta-go)
+[![Go Report Card](https://goreportcard.com/badge/github.com/maxrem/delta-go)](https://goreportcard.com/report/github.com/maxrem/delta-go)
 
 ## About
 
@@ -33,7 +33,7 @@ import (
 	"os"
 	"testing"
 
-	delta "github.com/csimplestring/delta-go"
+	delta "github.com/maxrem/delta-go"
 )
 
 func TestAzureBlobExample(t *testing.T) {

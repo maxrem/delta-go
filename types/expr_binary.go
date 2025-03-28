@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/csimplestring/delta-go/errno"
+	"github.com/maxrem/delta-go/errno"
 	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/rotisserie/eris"
 	"github.com/shopspring/decimal"

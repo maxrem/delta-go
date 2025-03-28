@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strconv"
 
-	"github.com/csimplestring/delta-go/errno"
+	"github.com/maxrem/delta-go/errno"
 	"github.com/rotisserie/eris"
 )
 

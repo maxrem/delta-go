@@ -3,8 +3,8 @@ package deltago
 import (
 	"time"
 
-	"github.com/csimplestring/delta-go/internal/util"
-	"github.com/csimplestring/delta-go/store"
+	"github.com/maxrem/delta-go/internal/util"
+	"github.com/maxrem/delta-go/store"
 	"github.com/samber/mo"
 )
 
@@ -22,8 +22,8 @@ func (l *LogSegment) equal(other *LogSegment) bool {
 		return false
 	}
 	if l.LogPath != other.LogPath ||
-		l.Version != other.Version ||
-		l.LastCommitTimestamp.Unix() != other.LastCommitTimestamp.Unix() {
+			l.Version != other.Version ||
+			l.LastCommitTimestamp.Unix() != other.LastCommitTimestamp.Unix() {
 		return false
 	}
 	if l.CheckpointVersion.OrEmpty() != other.CheckpointVersion.OrEmpty() {

@@ -5,11 +5,11 @@ import (
 	"math"
 
 	"github.com/barweiss/go-tuple"
-	"github.com/csimplestring/delta-go/action"
-	"github.com/csimplestring/delta-go/errno"
-	"github.com/csimplestring/delta-go/internal/util"
-	"github.com/csimplestring/delta-go/internal/util/filenames"
-	"github.com/csimplestring/delta-go/store"
+	"github.com/maxrem/delta-go/action"
+	"github.com/maxrem/delta-go/errno"
+	"github.com/maxrem/delta-go/internal/util"
+	"github.com/maxrem/delta-go/internal/util/filenames"
+	"github.com/maxrem/delta-go/store"
 	"github.com/samber/mo"
 )
 
@@ -66,7 +66,7 @@ func (h *historyManager) checkVersionExists(versionToCkeck int64, sr *SnapshotRe
 }
 
 func (h *historyManager) getActiveCommitAtTime(sr *SnapshotReader, timestamp int64,
-	canReturnLastCommit bool, mustBeRecreatable bool, canReturnEarliestCommit bool) (*commit, error) {
+		canReturnLastCommit bool, mustBeRecreatable bool, canReturnEarliestCommit bool) (*commit, error) {
 
 	timeInMill := timestamp
 	var earliestVersion int64

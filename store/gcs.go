@@ -5,9 +5,9 @@ import (
 	"strings"
 
 	"cloud.google.com/go/storage"
-	"github.com/csimplestring/delta-go/errno"
-	"github.com/csimplestring/delta-go/internal/util/path"
-	"github.com/csimplestring/delta-go/iter"
+	"github.com/maxrem/delta-go/errno"
+	"github.com/maxrem/delta-go/internal/util/path"
+	"github.com/maxrem/delta-go/iter"
 
 	goblob "gocloud.dev/blob"
 	_ "gocloud.dev/blob/gcsblob"
